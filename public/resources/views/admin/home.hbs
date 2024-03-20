@@ -1,0 +1,390 @@
+<!DOCTYPE html>
+<html lang="en"><!-- Basic -->
+<head>
+	<meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">   
+   
+    <!-- Mobile Metas -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Document</title>
+
+    <link rel="stylesheet" href="/public/resources/views/css/custom.css">
+    <link rel="stylesheet" href="/public/resources/views/css/tree-viewer.css">
+</head>
+<body class="abody">
+    <div class="wrapper">
+        <div class="tabs">
+            <div class="tab">
+                <input type="radio" name="css-tabs" id="tab-1" checked class="tab-switch">
+                <label for="tab-1" class="tab-label">Product</label>
+                <div class="tab-content">
+                    <button id="themsp" value="1" style="float:right" onclick="add()" >Add Item</button>
+                    <input style="float:right" type="text" id="myInput0" onkeyup="myFunction2()" placeholder="Search for names.." title="Type in a name">
+                    <p>  </p>
+                    <table id="addhide"  cellspacing="0" cellpadding="0" border="0" width="1325" style="border-collapse: collapse; float:right; display:block;">
+                        <tr>
+                            <td>
+                            <table cellspacing="0" cellpadding="1" border="0" width="1300" style="border-collapse: collapse;">
+                                <tr class="table-title">
+                                    <th>Image</th>
+                                    <th>Name</th>
+                                    <th>Category</th>
+                                    <th>Price</th>
+                                    <th>Describe</th>
+                                    <th></th>
+                                    <th></th>
+                                </tr>
+                            </table>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                            <div style="width:1320px; height:400px; overflow:auto;">
+                                <table cellspacing="0" cellpadding="1" border="1" width="1300" id="mytable" style="border-collapse: collapse;">
+                                
+                                {{#each prod}}
+                                
+                                
+                                <tr>
+                                    <td>
+                                        <form ref='uploadForm' 
+                                                 
+                                                action="/admin/updateImage/{{this.Id_product}}"
+                                                method='post' 
+                                                encType="multipart/form-data">
+                                                <label class="custom-file-upload">
+                                        <div style="width:75px; height:75px; margin:0 auto;">
+                                             
+                                            <input type="file" name="sampleFile" id="inputimg{{this.Id_product}}"/>
+                                            <img src="{{this.Link_image}}" id="thisimage{{this.Id_product}}" class="img-fit" >
+                                            <input type='submit' value='Upload!'>
+                                            
+                                        </div> </label></form>
+                                    </td>
+                                    <form id='this{{this.Id_product}}' method="Post" >
+                                    <td><input name="ten" class="product_name" style="height: 70px; border:none;" value="{{this.Name_product}}"></td>
+                                    <td><input name="danhmuc" style="height: 70px; border:none;" value="{{this.Name_category}}"></td>
+                                    <td><input name="gia" style="height: 70px; border:none;" value="{{this.Price}}"></td>
+                                    <td><input name="mota" style="height: 70px; border:none;" value="{{this.Describe}}"></td>
+                                    <td><button onclick="update(`this{{this.Id_product}}`)">Save Edit</button></td>
+                                    <td><button onclick="deletesp(`this{{this.Id_product}}`)">Delete</button></td>
+                                    </form>
+                                </tr>
+                                
+                                <script>
+                                    function update(a){
+                                        
+                                        let idproduct = a.split('s');
+                                        console.log(document.getElementById(a));
+                                        idproduct=idproduct[idproduct.length-1]*1;
+                                        document.getElementById(a).action = `/admin/updateProduct/${idproduct}`;
+                                        
+                                        return confirm('Bạn chắc chắn với thay đổi trên?');
+                                    }
+                                    function deletesp(a){
+                                       
+                                        let idproduct = a.split('s');
+                                        console.log(document.getElementById(a));
+                                        idproduct=idproduct[idproduct.length-1]*1;
+                                        document.getElementById(a).action = `/admin/deleteProduct/${idproduct}`;
+                                        
+                                        return confirm('Bạn chắc chắn với thay đổi trên?');
+                                    }
+                                </script>
+                                {{/each}}
+                                
+                                
+                                {{!-- <script>
+                                                const input = document.getElementById(`inputimg{{this.Id_product}}`);
+                                                const image = document.getElementById('thisimage{{this.Id_product}}');
+
+                                                input.addEventListener('change', (e) => {
+                                                    console.log(e.target.files.length);
+                                                    console.log("heh");
+                                                    if (e.target.files.length) {
+                                                        let src = URL.createObjectURL(e.target.files[0]);
+                                                        image.src = src;
+                                                    }
+                                                });
+                                            </script> --}}
+                                </table>  
+                            </div>
+                            </td>
+                        </tr>
+                    </table>
+                    <div id="addshow" style="display:none;">
+                        
+                        
+                        <form ref='uploadForm' 
+                            action="/admin/themsp"
+                            method='post' 
+                            encType="multipart/form-data">              
+                            <input type="file" name="sampFile" id="inputimg{{this.Id_product}}"/>
+                            <input name="tensp" placeholder="Ten">
+                            <select id="sex" name="catesp">
+                                {{#each cate}}				
+                                <option value={{this.Id_category}}>{{this.Name_category}}</option>
+                                {{/each}}
+                            </select>
+                            <input name="giasp" placeholder="Gia">
+                            <input name="motasp" placeholder="Mo Ta">
+                            <input type='submit' value='Upload!'>
+                                            
+                        </form>
+                    </div>
+                    <script>
+                        function add(){
+                            var x = document.getElementById('themsp');
+                            if (x.value === "1"){
+                                x.value = "0";
+                                document.getElementById('addshow').style.display = "block";
+                                document.getElementById('addhide').style.display = "none";
+                            }
+                            else{
+                                x.value = "1";
+                                document.getElementById('addhide').style.display = "block";
+                                document.getElementById('addshow').style.display = "none";
+                            }
+                            
+                        }
+                    </script>
+                </div>
+            </div>
+            
+            <div class="tab">
+                <input type="radio" name="css-tabs" id="tab-2" class="tab-switch">
+                <label for="tab-2" class="tab-label">Category</label>
+                <div class="tab-content">
+                    <button id="themcate" style="float:right" onclick="addcate()" value="1">Add Item</button>
+                    <input style="float:right" type="text" id="myInput1" onkeyup="myFunction2()" placeholder="Search for names.." title="Type in a name">
+                    <p>  </p>
+                    <table id="addcatehide" cellspacing="0" cellpadding="0" border="0" width="1325" style="border-collapse: collapse; float:right">
+                        <tr>
+                            <td>
+                            <table cellspacing="0" cellpadding="1" border="0" width="1300" style="border-collapse: collapse;">
+                                <tr class="table-title">
+                                    <th>ID</th>
+                                    <th>Name</th>
+                                    <th>Option</th>
+                                    <th></th>
+                                </tr>
+                            </table>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                            <div style="width:1320px; height:330px; overflow:auto;">
+                                <table cellspacing="0" cellpadding="1" border="1" width="1300" id="mytable1" style="border-collapse: collapse;">
+                                
+                                {{#each cate}}
+                                <tr>
+                                    <td>{{this.Id_category}}</td>
+                                    <td><input value="{{this.Name_category}}"></td>
+                                    <td><button>Save Edit</button></td>
+                                    <td><button>Delete</button></td>
+                                </tr>
+                                {{/each}}
+                                
+                                </table>  
+                            </div>
+                            </td>
+                        </tr>
+                    </table>
+                    <div id="addcateshow" style="display:none;">
+                        
+                        
+                        <form 
+                            action="/admin/themsp"
+                            method='post' 
+                            >              
+                            <input name="tencate" placeholder="Ten">
+                            
+                            <input type='submit' value='Upload!'>
+                                            
+                        </form>
+                    </div>
+                    <script>
+                        function addcate(){
+                            var x = document.getElementById('themcate');
+                            if (x.value === "1"){
+                                x.value = "0";
+                                document.getElementById('addcateshow').style.display = "block";
+                                document.getElementById('addcatehide').style.display = "none";
+                            }
+                            else{
+                                x.value = "1";
+                                document.getElementById('addcatehide').style.display = "block";
+                                document.getElementById('addcateshow').style.display = "none";
+                            }
+                            
+                        }
+                    </script>
+                </div>
+            </div>
+
+            <div class="tab">
+                <input type="radio" name="css-tabs" id="tab-3" class="tab-switch">
+                <label for="tab-3" class="tab-label">Bill</label>
+                <div class="tab-content">
+                    
+                    <table cellspacing="0" cellpadding="0" border="0" width="1325" style="border-collapse: collapse; float:right">
+                        <tr>
+                            <td>
+                            <table cellspacing="0" cellpadding="1" border="0" width="1300" style="border-collapse: collapse;">
+                                <tr class="table-title">
+                                    <th>ID</th>
+                                    <th>User ID</th>
+                                    <th>Date</th>
+                                    <th>State</th>
+                                    <th></th>
+                                </tr>
+                            </table>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                            <div style="width:1320px; height:330px; overflow:auto;">
+                                <table cellspacing="0" cellpadding="1" border="1" width="1300" id="mytable" style="border-collapse: collapse;">
+                                
+                                {{#each bill}}
+                                <tr>
+                                    <td>{{this.Id_bill}}</td>
+                                    <td>{{this.Id_user}}</td>
+                                    <td>{{this.Date}}</td>
+                                    <td class="state" id="tragthai{{this.Id_bill}}">{{this.State}}</td>
+                                    <td><button id="btn{{this.Id_bill}}"><a href="/admin/bildeliver/{{this.Id_bill}}">Approve</a></button></td>
+                                </tr>
+                                <script>
+                                     if(document.getElementById(`tragthai{{this.Id_bill}}`).innerText==1)
+                                            {
+                                                document.getElementById(`tragthai{{this.Id_bill}}`).innerText = 'waiting';
+                                                
+                                                
+                                                
+                                            }
+                                        else if(document.getElementById(`tragthai{{this.Id_bill}}`).innerText==3)
+                                            {
+                                                document.getElementById(`tragthai{{this.Id_bill}}`).innerText = 'canceled';
+                                                document.getElementById(`btn{{this.Id_bill}}`).style.display = 'none';
+                                                
+                                            }
+                                        else if((document.getElementById(`tragthai{{this.Id_bill}}`).innerText==2))
+                                            {
+                                                document.getElementById(`tragthai{{this.Id_bill}}`).innerText = 'success';
+                                                document.getElementById(`btn{{this.Id_bill}}`).style.display = 'none';
+                                                
+                                            }
+                                        else if((document.getElementById(`tragthai{{this.Id_bill}}`).innerText==0))
+                                            {
+                                                document.getElementById(`tragthai{{this.Id_bill}}`).innerText = 'buying';
+                                                document.getElementById(`btn{{this.Id_bill}}`).style.display = 'none';
+                                                
+                                            }
+                                        else
+                                            {
+                                                document.getElementById(`tragthai{{this.Id_bill}}`).innerText = 'delivering...';
+                                                document.getElementById(`btn{{this.Id_bill}}`).style.display = 'none';
+                                                
+                                            }
+                                </script>
+                                {{/each}}
+                                
+                                </table>  
+                            </div>
+                            </td>
+                        </tr>
+                    </table>
+                    
+                </div>
+            </div>
+
+            {{!-- <div class="tab">
+                <input type="radio" name="css-tabs" id="tab-4" class="tab-switch">
+                <label for="tab-4" class="tab-label">Chart</label>
+                <div class="tab-content"> 
+                    <p>Hế lô cả nhà.</p>
+                    <input placeholder="haha">
+                    <img src="/public/resources/views/images/img-01.jpg" class="img-fluid" alt="/public/resources/views/">
+
+                </div>
+            </div> --}}
+            <div class="tab-r">
+                <input type="radio" name="css-tabs" id="tab-5" class="tab-switch">
+                <label for="tab-5" class="tab-label">{{#each username}}{{this.thang}}{{/each}}</label>
+                <div class="tab-content"> 
+                    {{!-- <p>Hế lô cả nhà.</p>
+                    <input placeholder="haha">
+                    <img src="/public/resources/views/images/img-01.jpg" class="img-fluid" alt="/public/resources/views/">
+                    <input type="text" id="myInput" onkeyup="myFunction()" placeholder="Search for names.." title="Type in a name">
+                    <ul class="scroll-list" id="myUL">
+                        <li><a href="#">hihi</a><button>click</button></li>
+                        <li><a href="#">hihi1</a><button>click</button></li>
+                        <li><a href="#">hihi2</a><button>click</button></li>
+                        <li><a href="#">hihi3</a><button>click</button></li>
+                        <li><a href="#">hihi4</a><button>click</button></li>
+                        <li><a href="#">hihi3</a><button>click</button></li>
+                        <li><a href="#">hihi</a><button>click</button></li>
+                        <li><a href="#">hihi1</a><button>click</button></li>
+                        <li><a href="#">hihi2</a><button>click</button></li>
+                        <li><a href="#">hihi3</a><button>click</button></li>
+                        <li><a href="#">hihi4</a><button>click</button></li>
+                        <li><a href="#">hihi3</a><button>click</button></li>
+                    </ul> --}}
+                </div>
+            </div>
+        </div>
+            {{!-- <p>Example line outside of tab box</p> --}}
+    </div>
+
+<script>
+function myFunction() {
+    var input, filter, ul, li, a, i, txtValue;
+    input = document.getElementById("myInput");
+    filter = input.value.toUpperCase();
+    ul = document.getElementById("myUL");
+    li = ul.getElementsByTagName("li");
+    console.log(li[0].getElementsByTagName("a"));
+    for (i = 0; i < li.length; i++) {
+        a = li[i].getElementsByTagName("a")[0];
+        txtValue = a.textContent || a.innerText;
+        if (txtValue.toUpperCase().indexOf(filter) > -1) {
+            li[i].style.display = "";
+        } else {
+            li[i].style.display = "none";
+        }
+    }
+}
+function myFunction2() {
+    var input, filter, table, li, a, i, txtValue;
+    input = document.getElementById("myInput0");
+    filter = input.value.toUpperCase();
+    table = document.getElementById("mytable");
+    li = table.getElementsByTagName("tr");
+    console.log(li[0].getElementsByTagName("td")[1].getElementsByClassName('product_name')[0].value);
+    for (i = 0; i < li.length; i++) {
+        a = li[i].getElementsByTagName("td")[1].getElementsByClassName('product_name')[0];
+        txtValue = a.textContent || a.innerText || a.value;
+        if (txtValue.toUpperCase().indexOf(filter) > -1) {
+            li[i].style.display = "";
+        } else {
+            li[i].style.display = "none";
+        }
+    }
+}
+function haha(){
+    console.log("1");
+    var state1 = document.getElementsByClassName('state');
+    for( var i=0; i < state1.length; i++){
+        console.log(state1[i]===1);
+        if(state1[i]< 1)
+        state1[i].textContent= "hi";
+        
+        else if(state1[i]<2)
+        state1[i].textContent= "ha";
+        else 
+        state1[i].textContent= "hu";
+    }
+}
+</script>
+</body>
+</html>

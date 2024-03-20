@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en"><!-- Basic -->
+<head>
+	<meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">   
+   
+    <!-- Mobile Metas -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+ 
+     <!-- Site Metas -->
+    <title>Yamifood Restaurant - Responsive HTML5 Template</title>  
+    <meta name="keywords" content="">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <!-- Site Icons -->
+    <link rel="shortcut icon" href="/public/resources/views/favicon.ico" type="/public/resources/views//x-icon">
+    <link rel="apple-touch-icon" href="/public/resources/views/apple-touch-icon.png">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="/public/resources/views/css/bootstrap.min.css">    
+	<!-- Site CSS -->
+    <link rel="stylesheet" href="/public/resources/views/css/style.css">    
+    <!-- Responsive CSS -->
+    <link rel="stylesheet" href="/public/resources/views/css/responsive.css">
+	<!-- Custom CSS -->
+    <link rel="stylesheet" href="/public/resources/views/css/custom.css">
+	<link rel="stylesheet" href="/public/resources/views/css/tree-viewer.css">
+
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+      <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+</head>
+
+<body>
+	<!-- Start header -->
+	{{>header}}
+	<!-- End header -->
+{{!-- Start user details --}}
+
+
+<div >  
+    <form  name="cart_form" class="content-cart " id="form-1" action='' method="Post" >
+	<input name="id_bill" value="" style="display: none;">
+                <script>
+                    document.cart_form.action = "/newcart";
+                </script>
+    {{!-- <img class="img-b" src="/public/resources/views/images/Cake-Shop.png"> --}}
+        
+		<div style="padding-left: 100px; text-shadow: 2px 2px #c4ff01; font-size: 55px;"><b>Cake Cart</b><hr style="margin-top: -0.5rem;margin-bottom: 3rem;border: 0;border-top: 3px solid #7d7d7d;"></div>
+		
+		<div style="width:100px; margin-left:150px; margin-bottom:15px" >
+		<button type="submit" style="width:100px; height:30px; box-shadow:2px 2px #ffe81f;">Save to bill</button>
+		{{!-- <button onclick="" style="width:100px; height:30px; box-shadow:2px 2px #ffe81f; position: fixed; margin-left: 20px;">Save cart</button> --}}
+		<input value="0" style="display: none;">
+		</div>
+		<table cellspacing="0" cellpadding="0" border="0" width="1325" style="border-collapse: collapse; float:right ">
+                        <tr>
+                            <td>
+                            <table cellspacing="0" cellpadding="1" border="0" width="1300" style="border-collapse: collapse;">
+                                <tr class="table-title">
+									<th>Image</th>
+                                    <th>Name Product</th>
+									<th>Single Price</th>
+                                    <th>Quatity</th>
+                                    <th>Price</th>
+									<th></th>
+                                    
+                                </tr>
+                            </table>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                            <div style="width:1320px; height:330px; overflow:auto;">
+                                <table cellspacing="0" cellpadding="1" border="1" width="1300" id="mytable" style="border-collapse: collapse;">
+                                {{#each result}}
+                                <tr>
+									<td><div style="width:75px; height:75px; margin:0 auto;"><img src="{{this.Link_image}}" class="img-fit" ></div></td>
+                                    <td>{{this.Name_product}}</td>
+									<td id="price{{this.Id_product}}">{{this.Price}}</td>
+                                    <td><input value="{{this.Quatity}}" id="qual{{this.Id_product}}" class="input1" onblur="price_product({{this.Id_product}})"></td>
+                                    <td id="totalprice{{this.Id_product}}" class="total" onclick="calctotal()"></td>
+									<td><a href="/delete/giohang/{{this.Id_cart}}">Remove</a></td>
+                                </tr>
+								
+								<script>
+									var elt = document.getElementById(`price{{this.Id_product}}`).innerText;
+									memory = parseInt(elt);
+									elt = document.getElementById(`qual{{this.Id_product}}`).value;
+									hdd = parseInt(elt);
+									var total = memory*hdd;
+									document.getElementById(`totalprice{{this.Id_product}}`).innerText= total;
+
+								</script>  
+                                {{/each}}
+								<script>
+									function price_product(a){
+										var elt = document.getElementById(`price${a},${a}`).innerText;
+										
+										memory = parseInt(elt);
+										elt = document.getElementById(`qual${a},${a}`).value;
+										hdd = parseInt(elt);
+										var total = memory*hdd;
+										document.getElementById(`totalprice${a},${a}`).innerText= total;
+										var save=false;
+										calctotal();
+										window.onbeforeunload = function (){
+											if(!save){
+												return "You haven't saved your changes";
+											}
+										}
+									}
+								</script>
+								<tfoot>
+									<tr>
+									<th colspan="4">Total :</th>
+									<td id="total"></td>
+									</tr>
+									<script>
+										var arr,total,num;
+										
+										calctotal();
+										function calctotal(){
+											total=0;
+											num=0;
+											arr = document.getElementsByClassName("total");
+											for(var i=0; i < arr.length ; i++){
+											num = parseInt(arr[i].innerText);
+											total += num;
+											}
+											document.getElementById('total').innerText = total;
+										}
+									</script>
+								</tfoot>
+                                </table>
+								
+                            </div>
+                            </td>
+                        </tr>
+    </table>
+	
+	
+    </form>
+	
+    {{!-- <img class="img-a" src="/public/resources/views/images/login-bg8.jpg"> --}}
+	{{!-- {{#each result}}
+	{{this.Id_product}}
+	{{this.Quatity}}
+	<br>
+	hihi
+	{{/each}} --}}
+    </div>
+
+{{!-- end user details --}}
+	
+	<!-- Start Contact info -->
+	{{>contact}}
+	<!-- End Contact info -->
+	
+	<!-- Start Footer -->
+	{{>footer}}
+	<!-- End Footer -->
+	
+	<a href="#" id="back-to-top" title="Back to top" style="display: none;">&uarr;</a>
+
+	<!-- ALL JS FILES -->
+	<script src="/public/resources/views/js/jquery-3.2.1.min.js"></script>
+	<script src="/public/resources/views/js/popper.min.js"></script>
+	<script src="/public/resources/views/js/bootstrap.min.js"></script>
+    <!-- ALL PLUGINS -->
+	<script src="/public/resources/views/js/jquery.superslides.min.js"></script>
+	<script src="/public/resources/views/js/images-loded.min.js"></script>
+	<script src="/public/resources/views/js/isotope.min.js"></script>
+	<script src="/public/resources/views/js/baguetteBox.min.js"></script>
+	<script src="/public/resources/views/js/form-validator.min.js"></script>
+    <script src="/public/resources/views/js/contact-form-script.js"></script>
+    <script src="/public/resources/views/js/custom.js"></script>
+</body>
+</html>

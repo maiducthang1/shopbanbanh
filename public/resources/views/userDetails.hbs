@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en"><!-- Basic -->
+<head>
+	<meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">   
+   
+    <!-- Mobile Metas -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+ 
+     <!-- Site Metas -->
+    <title>Yamifood Restaurant - Responsive HTML5 Template</title>  
+    <meta name="keywords" content="">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <!-- Site Icons -->
+    <link rel="shortcut icon" href="/public/resources/views/favicon.ico" type="/public/resources/views//x-icon">
+    <link rel="apple-touch-icon" href="/public/resources/views/apple-touch-icon.png">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="/public/resources/views/css/bootstrap.min.css">    
+	<!-- Site CSS -->
+    <link rel="stylesheet" href="/public/resources/views/css/style.css">    
+    <!-- Responsive CSS -->
+    <link rel="stylesheet" href="/public/resources/views/css/responsive.css">
+	<!-- Custom CSS -->
+    <link rel="stylesheet" href="/public/resources/views/css/custom.css">
+
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+      <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+</head>
+
+<body>
+	<!-- Start header -->
+	{{>header}}
+	<!-- End header -->
+{{!-- Start user details --}}
+<div>
+    <form  class="content-cart" id="form-1" action='/changedetail' method="Post" >
+		<div style=" text-shadow: 2px 2px #c4ff01; font-size: 55px; text-align: center;"><b>User Detail</b><hr style="margin-top: -0.5rem;margin-bottom: 3rem;border: 0;border-top: 3px solid #7d7d7d; width:50%"></div>
+        <table style="margin:auto;">
+			{{#each result}}
+            <tr class="form-group">
+                <th><b>Email:</b></th>
+                <th>					
+					<input id="username" name="username" value="{{this.Email}}" style="display:none;">
+					<div>{{this.Email}}</div>
+					<span class="form-message"></span>						
+				</th>
+            </tr>
+            
+            <tr>
+                <th><b>User name:</b></th>
+                <th>
+					<div class="form-group">
+					<input class="log-input" type="text" id="name" name="name" value="{{this.Name_user}}">
+					<span class="form-message"></span>
+					</div>
+				</th>
+            </tr>
+            <tr>
+                <td><b>Location:</b></td>
+                <td>
+					<div class="form-group">
+					<input class="log-input" type="text" id="address" name="address" value="{{this.Address}}">
+					<span class="form-message"></span>
+					</div>
+				</td>
+            </tr>
+            <tr>
+                <th><b>Sex:</b></th>
+                <th>
+					<div class="form-group">
+					{{!-- <input class="log-input" type="number" id="sex" name="sex" placeholder="Nam(1)/Nữ(0)"> --}}
+					<select id="sex" name="sex">				
+						<option id="sex0" value="0">Nam</option>
+						<option id="sex1" value="1">Nữ</option>
+					</select>
+						<script>
+							let nam = document.getElementById("sex0");
+							let nu = document.getElementById("sex1");
+							if({{this.Sex}} == 0){
+								nam.selected="selected";
+							}
+							else{
+								nu.selected="selected";
+							}
+						</script>
+					<span class="form-message"></span>
+					</div>
+				</th>
+            </tr>
+            <tr>
+                <td><b>Phone number:</b></td>
+                <td>
+					<div class="form-group">
+					<input class="log-input" type="text" id="phone" name="phone" value="{{this.Phone_number}}">
+					<span class="form-message"></span>
+					</div>
+				</td>
+            </tr>
+            <tr>
+                <td></td>
+                <td><button type="submit" class="primary">Change info</button></td>
+            </tr>
+			{{/each}}
+			
+        </table>
+		
+    </form>
+</div>
+{{!-- end user details --}}
+	
+	<!-- Start Contact info -->
+	{{>contact}}
+	<!-- End Contact info -->
+	
+	<!-- Start Footer -->
+	{{>footer}}
+	<!-- End Footer -->
+	
+	<a href="#" id="back-to-top" title="Back to top" style="display: none;">&uarr;</a>
+
+	<!-- ALL JS FILES -->
+	<script src="/public/resources/views/js/jquery-3.2.1.min.js"></script>
+	<script src="/public/resources/views/js/popper.min.js"></script>
+	<script src="/public/resources/views/js/bootstrap.min.js"></script>
+    <!-- ALL PLUGINS -->
+	<script src="/public/resources/views/js/jquery.superslides.min.js"></script>
+	<script src="/public/resources/views/js/images-loded.min.js"></script>
+	<script src="/public/resources/views/js/isotope.min.js"></script>
+	<script src="/public/resources/views/js/baguetteBox.min.js"></script>
+	<script src="/public/resources/views/js/form-validator.min.js"></script>
+    <script src="/public/resources/views/js/contact-form-script.js"></script>
+    <script src="/public/resources/views/js/custom.js"></script>
+</body>
+</html>

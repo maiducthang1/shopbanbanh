@@ -1,0 +1,169 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="/public/resources/views/js/jquery-3.2.1.min.js"></script>
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="/public/resources/views/css/bootstrap.min.css"> 
+    <!-- Site CSS -->
+    <link rel="stylesheet" href="/public/resources/views/css/style.css">  
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="/public/resources/views/css/custom.css">
+
+<script>
+	function setCookie(cname, cvalue, exdays) {
+    const d = new Date();
+    d.setTime(d.getTime() + (exdays*24*60*60*1000));
+    let expires = "expires="+ d.toUTCString();
+    req.body.cookie = cname + "=" + cvalue + ";" + expires + ";path=/";
+}
+	 {{!-- onload="setCookie('username','hi',1)" --}}
+	setCookie('username','hi',1)
+	setCookie('password','hia',1)
+	
+</script>
+</head>
+<body>
+    <div>    
+    <form  class="content-bg" action='/' method="Post" >
+    <img class="img-b" src="/public/resources/views/images/Cake-Shop.png">
+        <table>
+            <tr>
+                <th><b>Tài khoản:</b></th>
+                <th><input class="log-input" type="text" autofocus id="username" name="username" placeholder="Email" ng-required="true" required="required"></th>
+            </tr>
+            <tr>
+                <td><b>Mật khẩu:</b></td>
+                <td><input class="log-input" type="password" id="password" name="password" placeholder="Mật Khẩu" ng-required="true" required="required"></td>
+            </tr>
+            <tr>
+                <td></td>
+                <td><button type="submit" class="primary">Đăng nhập</button></td>
+            </tr>
+			
+			
+        </table>
+		<b>Chưa có tài khoản? <a href="/register" style="color: #fff;">Đăng ký</a></b>
+    </form>
+	<div style="width: 100%;">
+    <img class="img-a" class="img-fit" src="/public/resources/views/images/login-bg1.jpg">
+    </div>
+	</div>
+
+
+
+<!-- Start Contact info -->
+	<div class="contact-imfo-box">
+		<div class="container">
+			<div class="row">
+				<div class="col-md-4">
+					<i class="fa fa-volume-control-phone"></i>
+					<div class="overflow-hidden">
+						<h4>Phone</h4>
+						<p class="lead">
+							+01 123-456-4590
+						</p>
+					</div>
+				</div>
+				<div class="col-md-4">
+					<i class="fa fa-envelope"></i>
+					<div class="overflow-hidden">
+						<h4>Email</h4>
+						<p class="lead">
+							yourmail@gmail.com
+						</p>
+					</div>
+				</div>
+				<div class="col-md-4">
+					<i class="fa fa-map-marker"></i>
+					<div class="overflow-hidden">
+						<h4>Location</h4>
+						<p class="lead">
+							800, Lorem Street, US
+						</p>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+<!-- End Contact info -->
+
+
+<!-- Start Footer -->
+	<footer class="footer-area bg-f">
+		<div class="container">
+			<div class="row">
+				<div class="col-lg-3 col-md-6">
+					<h3>About Us</h3>
+					<p>Integer cursus scelerisque ipsum id efficitur. Donec a dui fringilla, gravida lorem ac, semper magna. Aenean rhoncus ac lectus a interdum. Vivamus semper posuere dui, at ornare turpis ultrices sit amet. Nulla cursus lorem ut nisi porta, ac eleifend arcu ultrices.</p>
+				</div>
+				<div class="col-lg-3 col-md-6">
+					<h3>Opening hours</h3>
+					<p><span class="text-color">Monday: </span>Closed</p>
+					<p><span class="text-color">Tue-Wed :</span> 9:Am - 10PM</p>
+					<p><span class="text-color">Thu-Fri :</span> 9:Am - 10PM</p>
+					<p><span class="text-color">Sat-Sun :</span> 5:PM - 10PM</p>
+				</div>
+				<div class="col-lg-3 col-md-6">
+					<h3>Contact information</h3>
+					<p class="lead">Ipsum Street, Lorem Tower, MO, Columbia, 508000</p>
+					<p class="lead"><a href="#">+01 2000 800 9999</a></p>
+					<p><a href="#"> info@admin.com</a></p>
+				</div>
+				<div class="col-lg-3 col-md-6">
+					<h3>Subscribe</h3>
+					<div class="subscribe_form">
+						<form class="subscribe_form">
+							<input name="EMAIL" id="subs-email" class="form_input" placeholder="Email Address..." type="email">
+							<button type="submit" class="submit" onclick="">SUBSCRIBE</button>
+							<div class="clearfix"></div>
+						</form>
+					</div>
+					<ul class="list-inline f-social">
+						<li class="list-inline-item"><a href="#"><i class="fa fa-facebook" aria-hidden="true"></i></a></li>
+						<li class="list-inline-item"><a href="#"><i class="fa fa-twitter" aria-hidden="true"></i></a></li>
+						<li class="list-inline-item"><a href="#"><i class="fa fa-linkedin" aria-hidden="true"></i></a></li>
+						<li class="list-inline-item"><a href="#"><i class="fa fa-google-plus" aria-hidden="true"></i></a></li>
+						<li class="list-inline-item"><a href="#"><i class="fa fa-instagram" aria-hidden="true"></i></a></li>
+					</ul>
+				</div>
+			</div>
+		</div>
+		
+		<div class="copyright">
+			<div class="container">
+				<div class="row">
+					<div class="col-lg-12">
+						<p class="company-name">All Rights Reserved. &copy; 2018 <a href="#">Yamifood Restaurant</a> Design By : 
+					<a href="https://html.design/">html design</a></p>
+					</div>
+				</div>
+			</div>
+		</div>
+		
+	</footer>
+    {{!-- End footer --}}
+</body>
+    {{!-- <script>
+        function login(){
+            $.ajax({
+                url:'/CakeShop/login',
+                type: 'POST',
+                data: {
+                    username: $('#username').val(),
+                    password: $('#password').val(),
+                }
+            })
+            {{!-- .then(data=>{
+                console.log(data);
+
+            })
+            .catch(err=>{
+                console.log(err);
+            }) 	
+        }
+    </script> --}}
+
+</html>

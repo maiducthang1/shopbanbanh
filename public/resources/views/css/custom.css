@@ -1,0 +1,91 @@
+.primary {
+    color: rgb(39, 33, 165);
+    border-color: #f4938c;
+    text-shadow: 0 0 10px #f00;
+    padding: 3px 20px 3px 20px;
+    border-radius: 6px;
+    margin-top: 10px;
+    box-shadow: inset 0 0 6px #f44336, 0 0 4px #f44336;
+  }
+  /* .primary:focus, */
+  .primary:hover,
+  .primary:active {
+    margin-bottom: 5px;
+    background: #49ffa18b;
+    color: rgb(230, 230, 230);
+    border-color: #63ffd5;
+    box-shadow: inset 0 0 10px #2cff92, 0 0 10px #2cff92;
+  }
+.maginleft {
+    margin-left: 50%;
+}
+.content-bg{
+  position: absolute;
+  top: 25%;
+  left: 34%;
+  color: rgb(2, 4, 4);
+  /* text-shadow: 0 0 5px rgb(149, 252, 133); */
+  text-shadow: 0 0 12px rgb(148, 255, 132);
+  font-size: 24px;
+  padding: 0px 0px 100px 0px;
+}
+.content-menu{
+  position: relative;
+  top: 100px;
+  left: 29%;
+  color: rgb(2, 4, 4);
+  /* text-shadow: 0 0 5px rgb(149, 252, 133); */
+  /* text-shadow: 0 0 12px rgb(148, 255, 132);
+  font-size: 24px; */
+  padding: 0px 0px 100px 0px;
+}
+.content-cart{
+  position: relative;
+  top: 100px;
+  color: rgb(2, 4, 4);
+  /* text-shadow: 0 0 5px rgb(149, 252, 133); */
+  /* text-shadow: 0 0 12px rgb(148, 255, 132);
+  font-size: 24px; */
+  padding: 0px 0px 400px 0px;
+  margin-bottom: 100px;
+}
+.input1{
+  border: 0px;
+  width: 90px;
+}
+.img-a{
+  background-image: url("../images/login-bg9.jpg");
+	background-repeat: repeat-x;
+  background-size: 400px 1000px;
+  width: 100%;
+  height: 1000px;
+}
+.img-b{
+  margin-bottom: 10%;
+  left: 30%;
+}
+.img-fit{
+  max-width: inherit;
+  max-height: inherit;
+  height: inherit;
+  width: inherit;
+  object-fit: cover;
+  opacity: 1;
+}
+.log-input{
+  border-radius: 4px;
+}
+.form-message{
+  color: #f00;
+  font-weight: normal;
+}
+/* input[type="file"] {
+  display: none;
+} */
+.custom-file-upload {
+  border: none;
+  display: inline-block;
+  cursor: pointer;
+  margin:0 auto;
+}
+/** ADD YOUR AWESOME CODES HERE **/

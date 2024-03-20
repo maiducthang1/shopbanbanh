@@ -1,0 +1,279 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="/public/resources/views/js/jquery-3.2.1.min.js"></script>
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="/public/resources/views/css/bootstrap.min.css"> 
+    <!-- Site CSS -->
+    <link rel="stylesheet" href="/public/resources/views/css/style.css">  
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="/public/resources/views/css/custom.css">
+
+</head>
+<body >
+<!-- Start header -->
+	{{>header}}
+<!-- End header -->
+
+    <div >  
+		<div class="img-a"></div>  
+    <form  class="content-bg " id="form-1" action='/register' method="Post" >
+    <img class="img-b" src="/public/resources/views/images/Cake-Shop.png">
+        <table>
+            <tr class="form-group">
+                <th><b>Tài khoản:</b></th>
+                <th>					
+					<input class="log-input" type="text" autofocus id="username" name="username" placeholder="Email">
+					<span class="form-message"></span>						
+				</th>
+            </tr>
+            <tr>
+                <td><b>Mật khẩu:</b></td>
+                <td>
+					<div class="form-group">
+					<input class="log-input" type="text" id="password" name="password" placeholder="Mật Khẩu">
+					<span class="form-message"></span>
+					</div>
+				</td>
+            </tr>
+			<tr>
+                <td><b>Nhập lại mật khẩu:</b></td>
+                <td>
+					<div class="form-group">
+					<input class="log-input" type="text" id="password_confirm" name="password_confirm" placeholder="Mật Khẩu">
+					<span class="form-message"></span>
+					</div>
+				</td>
+            </tr>
+            <tr>
+                <th><b>Tên:</b></th>
+                <th>
+					<div class="form-group">
+					<input class="log-input" type="text" id="name" name="name" placeholder="Nguyễn Văn A">
+					<span class="form-message"></span>
+					</div>
+				</th>
+            </tr>
+            <tr>
+                <td><b>Địa chỉ:</b></td>
+                <td>
+					<div class="form-group">
+					<input class="log-input" type="text" id="address" name="address" placeholder="Địa chỉ">
+					<span class="form-message"></span>
+					</div>
+				</td>
+            </tr>
+            <tr>
+                <th><b>Giới tính:</b></th>
+                <th>
+					<div class="form-group">
+					<input class="log-input" type="number" id="sex" name="sex" placeholder="Nam(1)/Nữ(0)">
+					<span class="form-message"></span>
+					</div>
+				</th>
+            </tr>
+            <tr>
+                <td><b>Số điện thoại:</b></td>
+                <td>
+					<div class="form-group">
+					<input class="log-input" type="text" id="phone" name="phone" placeholder="09xxxxxxx">
+					<span class="form-message"></span>
+					</div>
+				</td>
+            </tr>
+            <tr>
+                <td></td>
+                <td><button type="submit" class="primary">Đăng Ký</button></td>
+            </tr>
+			
+			
+        </table>
+		
+    </form>
+    {{!-- <img class="img-a" src="/public/resources/views/images/login-bg8.jpg"> --}}
+    </div>
+
+{{!-- hihi --}}
+{{!-- <form action="/register" method="post" class='signform form' id="form-1">
+			 <div class="form-group">
+                <label for="Email" class="col-sm-4 control-label form-label">Email</label>
+                <div class="col-sm-8">
+                    <input id="email" name="email"  class="form-control1 form-control ng-pristine ng-untouched ng-valid-email ng-invalid ng-invalid-required"  ng-required="true" required="required" >
+					<span class="form-message"></span>
+                </div>
+            </div>
+
+			<div class="form-group">
+                <label for="Password" class="col-sm-41 control-label">Password</label>
+                <div class="col-sm-8">
+                    <input type="password" id="password" name="password"  class="form-control ng-pristine ng-untouched ng-invalid ng-invalid-required"  ng-required="true" required="required" >
+					<span class="form-message"></span>
+                </div>
+            </div>
+			<div class="form-group">
+                <label for="Password" class="col-sm-41 control-label">Confirm password</label>
+                <div class="col-sm-8">
+                    <input type="password" id="password_confirmation" name="password_confirmation"  class="form-control ng-pristine ng-untouched ng-invalid ng-invalid-required"  ng-required="true" required="required" >
+					<span class="form-message"></span>
+                </div>
+            </div>	
+			<p class='elseinfo'>Thông tin khác </p>
+			
+			<div class="form-group">
+                <label for="Email" class="col-sm-4 control-label">Full Name</label>
+                <div class="col-sm-8">
+                    <input id="fullname" name="fullname"  class="form-control1 ng-pristine ng-untouched ng-valid-email ng-invalid ng-invalid-required"  ng-required="true" required="required" >
+					<span class="form-message"></span>
+                </div>
+            </div>
+				<div class="form-group">
+					<label for="Email" class="col-sm-4 control-label">Sex:</label>
+				<select id="sex" name="sex" class="select">		
+				<option value="0">Nam</option>
+				<option value="1">Nữ</option>
+				</select>
+				</div>
+			<div class="form-group">
+                <label for="Email" class="col-sm-4 control-label">Address</label>
+                <div class="col-sm-8">
+                    <input id="address" name="address"  class="form-control1 ng-pristine ng-untouched ng-valid-email ng-invalid ng-invalid-required"  ng-required="true" required="required" >
+					<span class="form-message"></span>
+                </div>
+            </div>
+			
+			<div class="form-group">
+                <label for="Email" class="col-sm-4 control-label">Phone Number</label>
+                <div class="col-sm-8">
+                    <input id="phone" name="phone"  class="form-control1 ng-pristine ng-untouched ng-valid-email ng-invalid ng-invalid-required"  ng-required="true" required="required" >
+					<span class="form-message"></span>
+                </div>
+            </div>
+			<button type="submit" class="btn btnxacnhan">Đăng ký</button>	
+	</form> --}}
+{{!-- hihi --}} 
+
+<!-- Start Contact info -->
+	<div class="contact-imfo-box">
+		<div class="container">
+			<div class="row">
+				<div class="col-md-4">
+					<i class="fa fa-volume-control-phone"></i>
+					<div class="overflow-hidden">
+						<h4>Phone</h4>
+						<p class="lead">
+							+01 123-456-4590
+						</p>
+					</div>
+				</div>
+				<div class="col-md-4">
+					<i class="fa fa-envelope"></i>
+					<div class="overflow-hidden">
+						<h4>Email</h4>
+						<p class="lead">
+							yourmail@gmail.com
+						</p>
+					</div>
+				</div>
+				<div class="col-md-4">
+					<i class="fa fa-map-marker"></i>
+					<div class="overflow-hidden">
+						<h4>Location</h4>
+						<p class="lead">
+							800, Lorem Street, US
+						</p>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+<!-- End Contact info -->
+
+
+<!-- Start Footer -->
+	<footer class="footer-area bg-f">
+		<div class="container">
+			<div class="row">
+				<div class="col-lg-3 col-md-6">
+					<h3>About Us</h3>
+					<p>Integer cursus scelerisque ipsum id efficitur. Donec a dui fringilla, gravida lorem ac, semper magna. Aenean rhoncus ac lectus a interdum. Vivamus semper posuere dui, at ornare turpis ultrices sit amet. Nulla cursus lorem ut nisi porta, ac eleifend arcu ultrices.</p>
+				</div>
+				<div class="col-lg-3 col-md-6">
+					<h3>Opening hours</h3>
+					<p><span class="text-color">Monday: </span>Closed</p>
+					<p><span class="text-color">Tue-Wed :</span> 9:Am - 10PM</p>
+					<p><span class="text-color">Thu-Fri :</span> 9:Am - 10PM</p>
+					<p><span class="text-color">Sat-Sun :</span> 5:PM - 10PM</p>
+				</div>
+				<div class="col-lg-3 col-md-6">
+					<h3>Contact information</h3>
+					<p class="lead">Ipsum Street, Lorem Tower, MO, Columbia, 508000</p>
+					<p class="lead"><a href="#">+01 2000 800 9999</a></p>
+					<p><a href="#"> info@admin.com</a></p>
+				</div>
+				<div class="col-lg-3 col-md-6">
+					<h3>Subscribe</h3>
+					<div class="subscribe_form">
+						<form class="subscribe_form">
+							<input name="EMAIL" id="subs-email" class="form_input" placeholder="Email Address..." type="email">
+							<button type="submit" class="submit" onclick="">SUBSCRIBE</button>
+							<div class="clearfix"></div>
+						</form>
+					</div>
+					<ul class="list-inline f-social">
+						<li class="list-inline-item"><a href="#"><i class="fa fa-facebook" aria-hidden="true"></i></a></li>
+						<li class="list-inline-item"><a href="#"><i class="fa fa-twitter" aria-hidden="true"></i></a></li>
+						<li class="list-inline-item"><a href="#"><i class="fa fa-linkedin" aria-hidden="true"></i></a></li>
+						<li class="list-inline-item"><a href="#"><i class="fa fa-google-plus" aria-hidden="true"></i></a></li>
+						<li class="list-inline-item"><a href="#"><i class="fa fa-instagram" aria-hidden="true"></i></a></li>
+					</ul>
+				</div>
+			</div>
+		</div>
+		
+		
+		
+	</footer>
+	<div class="copyright">
+			<div class="container">
+				<div class="row">
+					<div class="col-lg-12">
+						<p class="company-name">All Rights Reserved. &copy; 2018 <a href="#">Yamifood Restaurant</a> Design By : 
+					<a href="https://html.design/">html design</a></p>
+					</div>
+				</div>
+			</div>
+		</div>
+    {{!-- End footer --}}
+</body>
+<script src="/public/validate.js"></script>
+    <script>
+      document.addEventListener('DOMContentLoaded', function () {
+        // Mong muốn của chúng ta
+        Validator({
+          form: '#form-1',
+          formGroupSelector: '.form-group',
+          errorSelector: '.form-message',
+          rules: [
+            Validator.isRequired('#name', 'Vui lòng nhập tên của bạn'),
+			Validator.isRequired('#address', 'Vui lòng nhập địa chỉ'),
+			Validator.isRequired('#phone', 'Vui lòng nhập số điện thoại'),
+			
+            Validator.isEmail('#username',),
+            Validator.minLength('#password', 6),
+            Validator.isRequired('#password_confirm'),
+            Validator.isConfirmed('#password_confirm', function () {
+              return document.querySelector('#form-1 #password').value;
+            }, 'Mật khẩu nhập lại không chính xác')
+          ],
+          //onSubmit: function (data) {
+            // Call API
+                //const options = {
+ 
+          //}
+        });
+      });
+    </script>
+</html>
